@@ -19,7 +19,7 @@ const flags = [
   { name: "Netherlands", img: "https://flagcdn.com/w320/nl.png" },
   { name: "Argentina", img: "https://flagcdn.com/w320/ar.png" },
   { name: "Norway", img: "https://flagcdn.com/w320/no.png" },
-  // ここにさらに国を追加できます
+  // 追加国もここに入れてください
 ];
 
 const flagImg = document.getElementById("flag-img");
@@ -32,13 +32,12 @@ const scoreDiv = document.getElementById("score");
 const correctSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-game-correct-answer-1992.mp3");
 const wrongSound = new Audio("https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3");
 
-// BGM（ループ・音量調整）
+// BGM（自動再生しない、ユーザー操作で再生開始）
 const bgm = new Audio("https://assets.mixkit.co/music/preview/mixkit-arcade-retro-game-over-213.mp3");
 bgm.loop = true;
 bgm.volume = 0.3;
-bgm.play().catch(() => {
-  // 自動再生制限があるブラウザ用。ユーザー操作待ちにする処理など追加可能。
-});
+
+let bgmStarted = false;
 
 let currentAnswer = "";
 let score = 0;
@@ -90,10 +89,6 @@ function loadQuestion() {
   updateScore();
 }
 
+// スコア表示更新
 function updateScore() {
-  scoreDiv.textContent = `スコア：${score} / ${questionCount}`;
-}
-
-nextBtn.onclick = loadQuestion;
-
-loadQuestion();
+  scoreDiv.tex
