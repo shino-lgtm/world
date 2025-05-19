@@ -91,4 +91,16 @@ function loadQuestion() {
 
 // スコア表示更新
 function updateScore() {
-  scoreDiv.tex
+  scoreDiv.textContent = `スコア：${score} / ${questionCount}`;
+}
+
+// 「次の問題へ」ボタン
+nextBtn.onclick = () => {
+  if (!bgmStarted) {
+    bgm.play();
+    bgmStarted = true;
+  }
+  loadQuestion();
+};
+
+loadQuestion();
